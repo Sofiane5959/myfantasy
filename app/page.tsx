@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#08060D] flex flex-col items-center justify-center px-6 text-white">
@@ -36,9 +38,11 @@ export default function Home() {
         </div>
 
         {/* CTA */}
-        <button className="w-full py-4 bg-[#C4427E] rounded-2xl text-white font-medium text-base hover:bg-[#B4326E] transition-colors">
-          Créer mon profil →
-        </button>
+        <Link href="/onboarding" className="w-full">
+          <button className="w-full py-4 bg-[#C4427E] rounded-2xl text-white font-medium text-base hover:bg-[#B4326E] transition-colors">
+            Créer mon profil →
+          </button>
+        </Link>
 
         <p className="text-[#3A2E4A] text-xs text-center">
           Réservé aux +18 ans · Données chiffrées · RGPD
