@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
+// Page dépendante de la session : jamais prérendue au build.
+export const dynamic = "force-dynamic";
+
 const ERRORS: Record<string, string> = {
   lien_invalide: "Ce lien est incomplet. Demande-en un nouveau.",
   lien_expire: "Ce lien a expiré ou a déjà été utilisé. Demande-en un nouveau.",
