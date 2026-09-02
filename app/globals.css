@@ -1,6 +1,55 @@
 @import "tailwindcss";
 
+/**
+ * Tokens de thème. Le prototype répétait une vingtaine de codes hex en dur
+ * dans chaque fichier ; tout passe désormais par ces variables.
+ *
+ * Contrastes vérifiés sur le fond --bg (ratio WCAG AA ≥ 4.5:1 pour le texte) :
+ *   --muted      6.1:1
+ *   --muted-dim  5.1:1   (ancien #6B5A7E : 3.4:1, sous le seuil)
+ */
+:root {
+  --bg: #08060d;
+  --surface: #120e1c;
+  --surface-2: #1c1228;
+  --surface-3: #1a1428;
+  --line: #2e2640;
+  --line-strong: #3c2e55;
+
+  --accent: #c4427e;
+  --accent-hover: #b4326e;
+  --accent-2: #7f77dd;
+  --accent-3: #378add;
+
+  --text: #ffffff;
+  --muted: #9985b0;
+  --muted-dim: #8a7a9e;
+
+  --ok: #5db87a;
+  --ok-bg: #12251a;
+  --ok-border: #1c3c28;
+  --danger: #ff6b8a;
+}
+
 body {
-  background: #08060D;
-  color: white;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Respecte les préférences système de réduction d'animation. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focus visible au clavier, absent du prototype. */
+:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 2px;
 }

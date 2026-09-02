@@ -1,51 +1,72 @@
 import Link from "next/link";
 
+const STATS: [string, string][] = [
+  ["97%", "des gens ont des fantasmes sexuels"],
+  ["79%", "veulent les concrétiser"],
+  ["Seulement 23%", "l'ont fait — tu changes ça"],
+];
+
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#08060D] flex flex-col items-center justify-center px-6 text-white">
-      <div className="max-w-sm w-full flex flex-col items-center gap-8">
-
-        {/* Logo */}
+    <main className="flex min-h-screen flex-col items-center justify-center px-6 py-10">
+      <div className="flex w-full max-w-sm flex-col items-center gap-8">
         <div className="flex flex-col items-center gap-3">
-          <div className="w-16 h-16 bg-[#C4427E] rounded-2xl flex items-center justify-center">
-            <span className="text-3xl">✦</span>
+          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[color:var(--accent)]">
+            <span className="text-3xl" aria-hidden="true">
+              ✦
+            </span>
           </div>
           <h1 className="text-4xl font-bold tracking-tight">MyFantasy</h1>
-          <p className="text-[#9985B0] text-sm tracking-widest uppercase">Pour toi. Tes désirs. Ton tempo.</p>
+          <p className="text-sm uppercase tracking-widest text-[color:var(--muted)]">
+            Pour toi. Tes désirs. Ton tempo.
+          </p>
         </div>
 
-        {/* Stats */}
-        <div className="w-full bg-[#120E1C] rounded-2xl p-5 flex flex-col gap-3">
-          <p className="text-[#9985B0] text-xs text-center mb-1">Basé sur la science du désir</p>
-          {[
-            ["97%", "des gens ont des fantasmes sexuels"],
-            ["79%", "veulent les concrétiser"],
-            ["Seulement 23%", "l'ont fait — tu changes ça"],
-          ].map(([v, t]) => (
-            <div key={v} className="flex items-baseline gap-3">
-              <span className="text-[#C4427E] font-bold text-base min-w-[110px]">{v}</span>
-              <span className="text-[#9985B0] text-xs">{t}</span>
+        <div className="flex w-full flex-col gap-3 rounded-2xl bg-[color:var(--surface)] p-5">
+          <p className="mb-1 text-center text-xs text-[color:var(--muted)]">
+            Basé sur la science du désir
+          </p>
+          {STATS.map(([value, text]) => (
+            <div key={value} className="flex items-baseline gap-3">
+              <span className="min-w-[110px] text-base font-bold text-[color:var(--accent)]">
+                {value}
+              </span>
+              <span className="text-xs text-[color:var(--muted)]">{text}</span>
             </div>
           ))}
         </div>
 
-        {/* Women first */}
-        <div className="w-full bg-[#120E1C] rounded-2xl p-4 border border-[#2E2640]">
-          <p className="text-[#7F77DD] text-xs font-medium mb-2">✦ Conçu pour les femmes</p>
-          <p className="text-[#9985B0] text-xs leading-relaxed">
-            Tu choisis, tu filtres, tu décides. Les hommes ne peuvent pas initier sans ton accord.
+        <div className="w-full rounded-2xl border border-[color:var(--line)] bg-[color:var(--surface)] p-4">
+          <p className="mb-2 text-xs font-medium text-[color:var(--accent-2)]">
+            ✦ Conçu pour les femmes
+          </p>
+          <p className="text-xs leading-relaxed text-[color:var(--muted)]">
+            Tu choisis, tu filtres, tu décides. Ton profil est invisible tant que
+            tu ne l&apos;actives pas, et ton prénom n&apos;est partagé
+            qu&apos;après une invitation acceptée des deux côtés.
           </p>
         </div>
 
-        {/* CTA */}
-        <Link href="/onboarding" className="w-full">
-          <button className="w-full py-4 bg-[#C4427E] rounded-2xl text-white font-medium text-base hover:bg-[#B4326E] transition-colors">
-            Créer mon profil →
-          </button>
+        <Link
+          href="/login"
+          className="w-full rounded-2xl bg-[color:var(--accent)] py-4 text-center text-base font-medium text-white transition-colors hover:bg-[color:var(--accent-hover)]"
+        >
+          Créer mon profil →
         </Link>
 
-        <p className="text-[#3A2E4A] text-xs text-center">
-          Réservé aux +18 ans · Données chiffrées · RGPD
+        {/*
+          Les mentions « Données chiffrées » et « RGPD » du prototype ont été
+          retirées : rien dans le code ne les justifiait. Voir /legal.
+        */}
+        <p className="text-center text-xs text-[color:var(--muted-dim)]">
+          Réservé aux personnes majeures ·{" "}
+          <Link href="/legal/confidentialite" className="underline hover:text-[color:var(--muted)]">
+            Confidentialité
+          </Link>{" "}
+          ·{" "}
+          <Link href="/legal/cgu" className="underline hover:text-[color:var(--muted)]">
+            CGU
+          </Link>
         </p>
       </div>
     </main>
